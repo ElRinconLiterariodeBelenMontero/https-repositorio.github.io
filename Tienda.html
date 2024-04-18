@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Agrega el script de Snipcart -->
+    <script src="https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.js"></script>
+    <link href="https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.css" rel="stylesheet" />
+    <!-- Configura tu clave de API -->
+    <script>
+        var snipcartConfig = {
+            apiKey: 'tu-clave-de-api'
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Tienda</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="blog.html">Blog</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <section id="tienda">
+        <h2>Tienda</h2>
+        <p>Espacio donde se ofrecen productos literarios.</p>
+        
+        <!-- Agrega elementos a la venta -->
+        <button
+            class="snipcart-add-item"
+            data-item-id="1"
+            data-item-name="Libro"
+            data-item-price="10.00"
+            data-item-url="/tienda.html"
+        >
+            Agregar al carrito
+        </button>
+    </section>
+
+    <!-- Botón del carrito de compras -->
+    <button class="snipcart-checkout">Ir al carrito</button>
+
+    <footer>
+        <p>&copy; 2024 Tienda de Literatura</p>
+    </footer>
+</body>
+</html>
