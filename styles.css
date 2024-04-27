@@ -44,14 +44,14 @@ footer {
 }
 
 .redes-sociales {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    position: relative; /* Cambiado a posición relativa */
+    margin-top: 10px; /* Añadido un margen superior para separarlos del encabezado */
+    text-align: right; /* Alineación a la derecha para que estén alineados con el borde derecho del encabezado */
 }
 
 .redes-sociales a {
-    color: #fff; /* Cambiar el color a blanco */
+    color: #fff;
     font-size: 24px;
     margin-left: 10px;
 }
+
