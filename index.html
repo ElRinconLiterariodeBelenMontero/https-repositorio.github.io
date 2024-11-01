@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Rincón Literario de Belén Montero - Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Importa Firebase App y Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js"></script>
+</head>
+<body>
+    <header>
+        <h2>El Rincón Literario de Belén Montero</h2>
+    </header>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="acerca.html">Acerca de</a>
+        <a href="tienda.html">Tienda</a>
+        <a href="blog.html">Blog</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+    <section id="inicio">
+        <h3>¡Bienvenido a El Rincón Literario de Belén Montero!</h3>
+        <p>Introducción breve sobre el sitio.</p>
+    </section>
+
+    <section id="opiniones">
+        <h3>Deja tu opinión</h3>
+        <form id="form-opiniones">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+            <label for="opinion">Opinión:</label>
+            <textarea id="opinion" required></textarea>
+            <button type="submit">Enviar Opinión</button>
+        </form>
+        <div id="mensaje"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 El Rincón Literario de Belén Montero</p>
+        <div class="redes-sociales">
+            <a href="https://www.instagram.com/tucuenta" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/belen.montero.9883" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.youtube.com/tucanal" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://twitter.com/tucuenta" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Tu configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCCkiQKWgZYz8jsWwHqv8_QtwQNTuPLY4s",
+            authDomain: "paginaweb-91af7.firebaseapp.com",
+            projectId: "paginaweb-91af7",
+            storageBucket: "paginaweb-91af7.firebasestorage.app",
+            messagingSenderId: "1010571810774",
+            appId: "1:1010571810774:web:6b24d1bd972b2fdc7c7677",
+            measurementId: "G-JLYDREK7WZ"
+        };
+
+        // Inicializa Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = firebase.firestore();
+
+        const formOpiniones = document.getElementById('form-opiniones');
+        const mensaje = document.getElementById('mensaje');
+
+        formOpiniones.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evita el envío predeterminado
+
+            const nombre = document.getElementById('nombre').value;
+            const opinion = document.getElementById('opinion').value;
+
+            try {
+                // Guarda la opinión en Firestore
+                await db.collection('opiniones').add({
+                    nombre: nombre,
+                    opinion: opinion,
+                    fecha: new Date()
+                });
+                mensaje.textContent = "¡Opinión enviada con éxito!";
+                mensaje.style.color = "green";
+                formOpiniones.reset(); // Limpia el formulario
+            } catch (error) {
+                console.error("Error al enviar la opinión: ", error);
+                mensaje.textContent = "Error al enviar la opinión. Intenta nuevamente.";
+                mensaje.style.color = "red";
+            }
+        });
+    </script>
+</body>
+</html>
